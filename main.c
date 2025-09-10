@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <dlfcn.h>
 int main() {
-    void *handle = dlopen("./libfoo.so", RTLD_NOW);
+    void *handle = dlopen("./libadd.so", RTLD_NOW);
     if (!handle) {
-        printf("dlopen failed\n");
+        printf("dlopen failed: %s\n", dlerror());
         return 0;
     }
     printf("loaded: %p\n", handle);
