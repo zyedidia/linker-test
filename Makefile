@@ -1,7 +1,7 @@
 all: main libadd.so
 
 libadd.so: add.c link.ld symbols.map.txt libc.a
-	clang -shared add.c -O2 -o $@ -nostdlib libc.a -Wl,--version-script=symbols.map.txt
+	clang -fuse-ld=lld -shared add.c -O2 -o $@ -nostdlib libc.a -Wl,--version-script=symbols.map.txt
 
 main: main.c libadd.so
 	clang -fuse-ld=lld main.c -o $@ -O2
